@@ -41,8 +41,7 @@ def talker():
                     keys.up = 0
                 elif event.key == K_DOWN:
                     keys.down = 0
-
-
+                    
         rospy.loginfo(keys)
         publisher.publish(keys)
         

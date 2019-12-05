@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   video_stream_opencv
   message_generation
+  
 )
 
 ## System dependencies are found with CMake's conventions
@@ -105,7 +106,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES tanker
-   CATKIN_DEPENDS roscpp rospy std_msgs video_stream_opencv
+   CATKIN_DEPENDS roscpp rospy std_msgs video_stream_opencv 
 #  DEPENDS system_lib
 )
 
@@ -118,6 +119,7 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  /usr/local/include
 )
 
 ## Declare a C++ library
@@ -133,7 +135,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME}_publisher src/tanker_publisher.cpp)
+#add_executable(${PROJECT_NAME}_publisher src/tanker_publisher.cpp)
 add_executable(${PROJECT_NAME}_driver src/tanker_driver.cpp)
 
 ## Rename C++ executable without prefix
@@ -147,12 +149,15 @@ add_executable(${PROJECT_NAME}_driver src/tanker_driver.cpp)
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(${PROJECT_NAME}_publisher
-   ${catkin_LIBRARIES}
-   )
+# target_link_libraries(${PROJECT_NAME}_publisher
+ #  ${catkin_LIBRARIES}
+ # )
+
+ find_library(WIRINGPI_LIBRARY NAMES wiringPi)
 
  target_link_libraries(${PROJECT_NAME}_driver
    ${catkin_LIBRARIES}
+   ${WIRINGPI_LIBRARY}
    )
 
 #############
