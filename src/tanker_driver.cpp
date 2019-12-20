@@ -6,15 +6,15 @@
 
 
 
-#define L_IN1 18 
+#define L_IN1 24 
 #define L_IN2 23 
-#define L_PWM 24
-#define L_STBY 25
+#define L_PWM 18
 
 #define R_IN1 12
 #define R_IN2 16
 #define R_PWM 20
-#define R_STBY 21
+
+#define STBY 25
 
 using namespace std;
 
@@ -46,13 +46,12 @@ int init_GPIO(){
   pinMode(L_IN1,OUTPUT);
   pinMode(L_IN2,OUTPUT);
   pinMode(L_PWM,OUTPUT);
-  pinMode(L_STBY,OUTPUT);
   pinMode(R_IN1,OUTPUT);
   pinMode(R_IN2,OUTPUT);
   pinMode(R_PWM,OUTPUT);
-  pinMode(R_STBY,OUTPUT);
-  digitalWrite(L_STBY,1);
-  digitalWrite(R_STBY,1);
+  pinMode(STBY,OUTPUT);
+ 
+  digitalWrite(STBY,1);
   
 }
 
@@ -64,19 +63,19 @@ void driveCallback(const tanker::input_keys& msg){
 
   
   if(msg.right == 1){
-    digitalWrite(L_IN1, 1);
-    digitalWrite(L_IN2, 0);
-    digitalWrite(L_PWM,1);
-    digitalWrite(R_IN1, 0);
-    digitalWrite(R_IN2, 1);
-    digitalWrite(R_PWM,1);
-    return;
-  }else if(msg.left == 1){
     digitalWrite(L_IN1, 0);
     digitalWrite(L_IN2, 1);
     digitalWrite(L_PWM,1);
     digitalWrite(R_IN1, 1);
     digitalWrite(R_IN2, 0);
+    digitalWrite(R_PWM,1);
+    return;
+  }else if(msg.left == 1){
+    digitalWrite(L_IN1, 1);
+    digitalWrite(L_IN2, 0);
+    digitalWrite(L_PWM,1);
+    digitalWrite(R_IN1, 0);
+    digitalWrite(R_IN2, 1);
     digitalWrite(R_PWM,1);
     return;
   }else if(msg.up == 1){
