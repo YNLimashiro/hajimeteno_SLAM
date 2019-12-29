@@ -1,0 +1,31 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.tsunabike.imash_000.roscontroller"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    implementation 'org.ros.android_core:android_core_components:0.4.0'
+    implementation 'org.ros.rosjava_messages:sensor_msgs:1.12.7'
+    implementation 'org.ros.rosjava_messages:std_srvs:1.11.2'
+    implementation 'org.ros.rosjava_messages:std_msgs:0.5.11'
+    implementation 'org.ros.rosjava_bootstrap:message_generation:[0.3, 0.4)'
+    implementation "com.google.guava:guava:28.2-android"
+
+}
