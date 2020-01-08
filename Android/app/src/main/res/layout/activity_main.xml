@@ -3,19 +3,21 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+<!--
     <org.ros.android.view.RosImageView
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_width="match_parent"
         android:src="@mipmap/icon"
-        android:id="@+id/image"/>
-
-    <org.ros.android.view.VirtualJoystickView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/image"
+        android:layout_weight="1"/>
+-->
+    <com.tsunabike.imash_000.roscontroller.MyVirtualJoystickView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/virtual_joystick"/>
+        android:id="@+id/virtual_joystick"
+       />
 
 
 </RelativeLayout>

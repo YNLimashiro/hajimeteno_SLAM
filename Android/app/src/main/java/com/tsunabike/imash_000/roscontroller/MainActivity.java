@@ -1,18 +1,10 @@
 package com.tsunabike.imash_000.roscontroller;
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.widget.Toast;
-
-
-import com.google.common.collect.Lists;
 
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.ros.address.InetAddressFactory;
@@ -24,26 +16,12 @@ import org.ros.android.view.RosTextView;
 import org.ros.android.view.VirtualJoystickView;
 import org.ros.android.view.camera.RosCameraPreviewView;
 import org.ros.android.view.visualization.VisualizationView;
-import org.ros.android.view.visualization.layer.CameraControlLayer;
-import org.ros.android.view.visualization.layer.LaserScanLayer;
-import org.ros.android.view.visualization.layer.Layer;
-import org.ros.android.view.visualization.layer.OccupancyGridLayer;
-import org.ros.android.view.visualization.layer.PathLayer;
-import org.ros.android.view.visualization.layer.PosePublisherLayer;
-import org.ros.android.view.visualization.layer.PoseSubscriberLayer;
-import org.ros.android.view.visualization.layer.RobotLayer;
 import org.ros.node.NodeConfiguration;
-import org.ros.node.NodeMain;
 import org.ros.node.NodeMainExecutor;
-
-import java.io.IOException;
-
-import sensor_msgs.CompressedImage;
 
 
 public class MainActivity extends RosActivity {
-
-    private VirtualJoystickView virtualJoystickView;
+    private MyVirtualJoystickView virtualJoystickView;
     private VisualizationView visualizationView;
     private RosTextView<std_msgs.String> rosTextView;
     private Talker talker;
@@ -83,12 +61,12 @@ public class MainActivity extends RosActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        virtualJoystickView = (VirtualJoystickView) findViewById(R.id.virtual_joystick);
-        image = (RosImageView<sensor_msgs.CompressedImage>) findViewById(R.id.image);
+        virtualJoystickView = (MyVirtualJoystickView) findViewById(R.id.virtual_joystick);
+        /*image = (RosImageView<sensor_msgs.CompressedImage>) findViewById(R.id.image);
         image.setTopicName("/webcam/image_raw/compressed");
         image.setMessageType(sensor_msgs.CompressedImage._TYPE);
         image.setMessageToBitmapCallable(new BitmapFromCompressedImage());
-
+*/
         /*rosTextView = (RosTextView<std_msgs.String>) findViewById(R.id.text);
         rosTextView.setTopicName("chatter");
         rosTextView.setMessageType(std_msgs.String._TYPE);
@@ -120,7 +98,7 @@ public class MainActivity extends RosActivity {
         /* Create Node*/
         //nodeMainExecutor.execute(rosTextView, nodeConfiguration.setNodeName("rostextview"));
         //nodeMainExecutor.execute(talker, nodeConfiguration.setNodeName("talker"));
-        nodeMainExecutor.execute(image, nodeConfiguration.setNodeName("android/video_view"));
+        //nodeMainExecutor.execute(image, nodeConfiguration.setNodeName("android/video_view"));
         nodeMainExecutor.execute(virtualJoystickView, nodeConfiguration.setNodeName("virtual_joystick"));
 
 
