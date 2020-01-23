@@ -62,11 +62,11 @@ public class MainActivity extends RosActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         virtualJoystickView = (MyVirtualJoystickView) findViewById(R.id.virtual_joystick);
-        /*image = (RosImageView<sensor_msgs.CompressedImage>) findViewById(R.id.image);
+        image = (RosImageView<sensor_msgs.CompressedImage>) findViewById(R.id.image);
         image.setTopicName("/webcam/image_raw/compressed");
         image.setMessageType(sensor_msgs.CompressedImage._TYPE);
         image.setMessageToBitmapCallable(new BitmapFromCompressedImage());
-*/
+
         /*rosTextView = (RosTextView<std_msgs.String>) findViewById(R.id.text);
         rosTextView.setTopicName("chatter");
         rosTextView.setMessageType(std_msgs.String._TYPE);
@@ -92,13 +92,13 @@ public class MainActivity extends RosActivity {
 
     @Override
     protected void init(NodeMainExecutor nodeMainExecutor) {
-        talker = new Talker();
+        //talker = new Talker();
         /*get Ros Server*/
         NodeConfiguration  nodeConfiguration =NodeConfiguration.newPublic(InetAddressFactory.newNonLoopback().getHostAddress(),getMasterUri());
         /* Create Node*/
         //nodeMainExecutor.execute(rosTextView, nodeConfiguration.setNodeName("rostextview"));
         //nodeMainExecutor.execute(talker, nodeConfiguration.setNodeName("talker"));
-        //nodeMainExecutor.execute(image, nodeConfiguration.setNodeName("android/video_view"));
+        nodeMainExecutor.execute(image, nodeConfiguration.setNodeName("android/video_view"));
         nodeMainExecutor.execute(virtualJoystickView, nodeConfiguration.setNodeName("virtual_joystick"));
 
 
